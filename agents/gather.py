@@ -2,6 +2,7 @@
 
 from google.adk.agents import LlmAgent
 
+from config import GATHER_MODEL
 from tools import submit_quote_request_tool
 
 GATHER_INSTRUCTION = """You are Dockie's quote assistant. Dockie gives users fast, transparent price estimates based on their route, vehicle type, and delivery needs—so there are no surprises later.
@@ -19,7 +20,7 @@ Once you have everything, call submit_quote_request with the collected values. T
 
 gather_agent = LlmAgent(
     name="GatherAgent",
-    model="gemini-3.1-flash-lite-preview",
+    model=GATHER_MODEL,
     instruction=GATHER_INSTRUCTION,
     tools=[submit_quote_request_tool],
 )

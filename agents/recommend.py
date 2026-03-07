@@ -2,6 +2,8 @@
 
 from google.adk.agents import LlmAgent
 
+from config import RECOMMEND_MODEL
+
 
 RECOMMEND_INSTRUCTION = f"""You are Dockie's recommendation step. The quote request and analysis are in session state.
 
@@ -18,7 +20,7 @@ Keep it transparent and concise. Do not use tools; just reply with the recommend
 
 recommend_agent = LlmAgent(
     name="RecommendAgent",
-    model="gemini-3.1-flash-lite-preview",
+    model=RECOMMEND_MODEL,
     instruction=RECOMMEND_INSTRUCTION,
     tools=[],  # No tools; only presents from state
 )
