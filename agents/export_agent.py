@@ -10,6 +10,9 @@ from typing import AsyncGenerator
 from google.genai import types
 from typing_extensions import override
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from google.adk.agents import BaseAgent
 from google.adk.agents import InvocationContext
 from google.adk.events import Event
