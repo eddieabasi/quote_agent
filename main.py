@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from fastapi.responses import Response
 
 from ag_ui_adk import ADKAgent
@@ -7,11 +6,7 @@ from ag_ui_adk import add_adk_fastapi_endpoint
 from dotenv import load_dotenv
 
 from agents import dockie_quote_agent
-from export.builders import build_docx_bytes
-from export.builders import build_pdf_bytes
-from export.temp_store import get_quote_file_path
-from tools import QUOTE_ANALYSIS_KEY
-from tools import QUOTE_REQUEST_KEY
+from export.temp_store import fetch_blob_file
 
 load_dotenv()
 
@@ -33,46 +28,18 @@ DOCX_FILENAME = "dockie_quote.docx"
 
 
 @app.get("/quote/download/{session_id}.{format}")
-async def quote_download(
-    session_id: str,
-    format: str,
-    app_name: str = "quote_agent",
-    user_id: str = "demo_user",
-):
-    """Serve quote PDF or DOCX: from temp dir if present, else generate from session state. Triggers download in the browser."""
+async def quote_download(session_id: str, format: str):
+    """Proxy a quote PDF or DOCX from Vercel Blob to the browser."""
     if format not in ("pdf", "docx"):
         return Response(status_code=400, content="Format must be pdf or docx")
 
+    import asyncio
+    body = await asyncio.to_thread(fetch_blob_file, session_id, format)
+    if not body:
+        return Response(status_code=404, content="Quote not found")
+
     filename = PDF_FILENAME if format == "pdf" else DOCX_FILENAME
     media_type = PDF_MEDIA_TYPE if format == "pdf" else DOCX_MEDIA_TYPE
-
-    # Prefer file saved to temp dir by Export agent (click-to-download)
-    path = get_quote_file_path(session_id, format)
-    if path is not None:
-        return FileResponse(
-            path=str(path),
-            media_type=media_type,
-            filename=filename,
-            headers={"Content-Disposition": f'attachment; filename="{filename}"'},
-        )
-
-    # Fallback: generate from session state (e.g. old session or direct link)
-    state = await adk_agent._session_manager.get_session_state(
-        session_id=session_id,
-        app_name=app_name,
-        user_id=user_id,
-    )
-    if not state:
-        return Response(status_code=404, content="Session not found")
-
-    quote_request = state.get(QUOTE_REQUEST_KEY)
-    quote_analysis = state.get(QUOTE_ANALYSIS_KEY)
-
-    if format == "pdf":
-        body = build_pdf_bytes(quote_request, quote_analysis)
-    else:
-        body = build_docx_bytes(quote_request, quote_analysis)
-
     return Response(
         content=body,
         media_type=media_type,

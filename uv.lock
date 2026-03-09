@@ -45,6 +45,8 @@ dependencies = [
     { name = "python-dotenv" },
     { name = "reportlab" },
     { name = "uvicorn" },
+    { name = "vercel" },
+    { name = "vercel-blob" },
 ]
 
 [package.metadata]
@@ -57,6 +59,8 @@ requires-dist = [
     { name = "python-dotenv", specifier = ">=1.2.2" },
     { name = "reportlab", specifier = ">=4.2.5" },
     { name = "uvicorn", specifier = ">=0.41.0" },
+    { name = "vercel", specifier = ">=0.5.1" },
+    { name = "vercel-blob", specifier = ">=0.3.0" },
 ]
 
 [[package]]
@@ -2098,6 +2102,18 @@ wheels = [
 ]
 
 [[package]]
+name = "tqdm"
+version = "4.67.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/09/a9/6ba95a270c6f1fbcd8dac228323f2777d886cb206987444e4bce66338dd4/tqdm-4.67.3.tar.gz", hash = "sha256:7d825f03f89244ef73f1d4ce193cb1774a8179fd96f31d7e1dcde62092b960bb", size = 169598, upload-time = "2026-02-03T17:35:53.048Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/16/e1/3079a9ff9b8e11b846c6ac5c8b5bfb7ff225eee721825310c91b3b50304f/tqdm-4.67.3-py3-none-any.whl", hash = "sha256:ee1e4c0e59148062281c49d80b25b67771a127c85fc9676d3be5f243206826bf", size = 78374, upload-time = "2026-02-03T17:35:50.982Z" },
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 source = { registry = "https://pypi.org/simple" }
@@ -2168,6 +2184,37 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/32/ce/eeb58ae4ac36fe09e3842eb02e0eb676bf2c53ae062b98f1b2531673efdd/uvicorn-0.41.0.tar.gz", hash = "sha256:09d11cf7008da33113824ee5a1c6422d89fbc2ff476540d69a34c87fab8b571a", size = 82633, upload-time = "2026-02-16T23:07:24.1Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/83/e4/d04a086285c20886c0daad0e026f250869201013d18f81d9ff5eada73a88/uvicorn-0.41.0-py3-none-any.whl", hash = "sha256:29e35b1d2c36a04b9e180d4007ede3bcb32a85fbdfd6c6aeb3f26839de088187", size = 68783, upload-time = "2026-02-16T23:07:22.357Z" },
+]
+
+[[package]]
+name = "vercel"
+version = "0.5.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "httpx" },
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "websockets" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a5/5c/244c554f08b58881b0254dab8478148fa59ba3116df20ee886f9a3efcd6f/vercel-0.5.1.tar.gz", hash = "sha256:1b4965e7b6dbf100ffd4e533441c8d62462a4f96b7f22851954215a27bb8861c", size = 67810, upload-time = "2026-02-27T18:05:53.363Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0d/da/edda0b85b21ec0c0a80ac75d4a83bf38e72241c6f046ef76dc98f49f3578/vercel-0.5.1-py3-none-any.whl", hash = "sha256:11bb8e4e934f3551ffca8108d175efaf84a40252557fe872338823aa283ab6a5", size = 81885, upload-time = "2026-02-27T18:05:52.061Z" },
+]
+
+[[package]]
+name = "vercel-blob"
+version = "0.4.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "requests" },
+    { name = "tqdm" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/42/bd/d299ee6ef69db7b3b6bd636e592ea0f5d87d65f0a9a69f68db4818117265/vercel_blob-0.4.2.tar.gz", hash = "sha256:1c8e24c618cb62d7ddaa91d6a01b94bd5e8856ed0cfc7525fb6bfe064e2790c6", size = 15281, upload-time = "2025-06-07T06:16:06.891Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5d/19/fadf607014ab74305e1eb91027215401d65b29af7e1f67cb4d1c17785796/vercel_blob-0.4.2-py3-none-any.whl", hash = "sha256:4150fc596b198489529275de46e577353a200fb292a39b9aecb76f76425fc05d", size = 15655, upload-time = "2025-06-07T06:16:05.343Z" },
 ]
 
 [[package]]
