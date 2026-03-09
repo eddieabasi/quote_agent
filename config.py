@@ -14,8 +14,8 @@ To swap the entire fleet to a new lite/standard model, set:
 
 import os
 
-LITE_MODEL     = os.getenv("DOCKIE_LITE_MODEL",     "gemini-2.0-flash-lite")
-STANDARD_MODEL = os.getenv("DOCKIE_STANDARD_MODEL", "gemini-2.5-flash")
+LITE_MODEL     = os.getenv("DOCKIE_LITE_MODEL",     "gemini-3.1-flash-lite-preview")
+STANDARD_MODEL = os.getenv("DOCKIE_STANDARD_MODEL", "gemini-3.1-flash-lite-preview")
 
 GATHER_MODEL    = os.getenv("DOCKIE_GATHER_MODEL",    LITE_MODEL)
 ANALYZE_MODEL   = os.getenv("DOCKIE_ANALYZE_MODEL",   STANDARD_MODEL)
